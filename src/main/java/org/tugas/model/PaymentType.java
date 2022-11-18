@@ -1,14 +1,14 @@
 package org.tugas.model;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import org.tugas.base.Create;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "last_education")
-public class LastEdukasi extends Create{
+@Table(name = "payment_tipe")
+public class PaymentType extends Create {
+
     @Id
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "uuid")
@@ -18,8 +18,10 @@ public class LastEdukasi extends Create{
     @Column(name = "nama", nullable = false, length = 30)
     private String nama;
 
-    public LastEdukasi() {
+    @Column(name = "code", nullable = false, length = 5)
+    private String code;
 
+    public PaymentType() {
         super();
     }
 
@@ -29,13 +31,5 @@ public class LastEdukasi extends Create{
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
     }
 }
