@@ -8,13 +8,13 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "employe")
+@Table(name = "employee")
 public class Employe extends Update {
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "uuid")
-    @Column(name = "id", nullable = false, length = 36)
+    @Column(name = "id", nullable = false)
     private String id;
 
     @Column(name = "full_name", nullable = false, length = 255)
@@ -51,12 +51,12 @@ public class Employe extends Update {
     @ManyToOne(targetEntity = User.class)
     @JsonIgnore
     @JoinColumn(name = "created_by", nullable = false)
-    private JobPosisi createdBy;
+    private User createdBy;
 
     @ManyToOne(targetEntity = User.class)
     @JsonIgnore
     @JoinColumn(name = "updated_by", nullable = false)
-    private LastEdukasi updatedBy;
+    private User updatedBy;
 
     public Employe() {
         super();
@@ -142,19 +142,19 @@ public class Employe extends Update {
         this.lastEdukasi = lastEdukasi;
     }
 
-    public JobPosisi getCreatedBy() {
+    public User getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(JobPosisi createdBy) {
+    public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
 
-    public LastEdukasi getUpdatedBy() {
+    public User getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(LastEdukasi updatedBy) {
+    public void setUpdatedBy(User updatedBy) {
         this.updatedBy = updatedBy;
     }
 }

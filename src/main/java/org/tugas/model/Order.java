@@ -7,13 +7,13 @@ import org.tugas.base.Create;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orderr")
 public class Order extends Create {
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "uuid")
-    @Column(name = "id", nullable = false, length = 36)
+    @Column(name = "id", nullable = false)
     private String id;
 
     @ManyToOne(targetEntity = Employe.class)
@@ -32,7 +32,7 @@ public class Order extends Create {
 
     @ManyToOne(targetEntity = PaymentType.class)
     @JsonIgnore
-    @JoinColumn(name = "payment_type", nullable = false)
+    @JoinColumn(name = "payment_type_id", nullable = false)
     private PaymentType paymentType;
 
     public Order() {

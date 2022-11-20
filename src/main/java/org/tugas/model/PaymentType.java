@@ -12,7 +12,7 @@ public class PaymentType extends Create {
     @Id
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "uuid")
-    @Column(name = "id", nullable = false, length = 36)
+    @Column(name = "id", nullable = false)
     private String id;
 
     @Column(name = "nama", nullable = false, length = 30)

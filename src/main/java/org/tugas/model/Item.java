@@ -14,7 +14,7 @@ public class Item extends Update {
     @Id
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "uuid")
-    @Column(name = "id", nullable = false, length = 36)
+    @Column(name = "id", nullable = false)
     private String id;
 
     @Column(name = "name", nullable = false, length = 255)
@@ -23,7 +23,7 @@ public class Item extends Update {
     @Column(name = "description", nullable = false, length = 10)
     private String description;
 
-    @Column(name = "kategori", nullable = false, length = 10)
+    @Column(name = "categori", nullable = false, length = 10)
     private String category;
 
     @Column(name = "price",nullable = false)
@@ -32,12 +32,12 @@ public class Item extends Update {
     @ManyToOne(targetEntity = User.class)
     @JsonIgnore
     @JoinColumn(name = "created_by", nullable = false)
-    private JobPosisi createdBy;
+    private User createdBy;
 
     @ManyToOne(targetEntity = User.class)
     @JsonIgnore
     @JoinColumn(name = "updated_by", nullable = false)
-    private LastEdukasi updatedBy;
+    private User updatedBy;
 
     public Item() {
         super();
@@ -83,19 +83,19 @@ public class Item extends Update {
         this.price = price;
     }
 
-    public JobPosisi getCreatedBy() {
+    public User getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(JobPosisi createdBy) {
+    public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
 
-    public LastEdukasi getUpdatedBy() {
+    public User getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(LastEdukasi updatedBy) {
+    public void setUpdatedBy(User updatedBy) {
         this.updatedBy = updatedBy;
     }
 }

@@ -4,15 +4,18 @@ import org.hibernate.annotations.GenericGenerator;
 import org.tugas.base.Update;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User extends Update {
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "uuid")
-    @Column(name = "id", nullable = false, length = 36)
+    @Column(name = "id", nullable = false)
     private String id;
 
     @Column(name = "full_name", nullable = false, length = 255)
@@ -33,11 +36,20 @@ public class User extends Update {
     @Column(name = "password",nullable = false, length = 20)
     private String password;
 
-    @Column(name = "adress",columnDefinition = "text")
+    @Column(name = "address",columnDefinition = "text")
     private String adress;
+
 
     public User() {
         super();
+    }
+
+    public static boolean isEmptyByLoginName(String loginName){
+        return User.find("login_name = ?1", loginName).firstResultOptional().isEmpty();
+    }
+
+    public static Optional<User> findByLoginName(String loginName){
+        return User.find("login_name = ?1", loginName).firstResultOptional();
     }
 
     public String getId() {
